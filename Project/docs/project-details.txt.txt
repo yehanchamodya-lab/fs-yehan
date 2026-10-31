@@ -1,0 +1,32 @@
+Project Name: smart-gym-manager
+
+Description:
+Smart Gym Manager is a web application to manage the daily operations of a
+gym: membership plans, members, trainers and workout classes. It will be
+built in two architectures: a traditional Spring Boot + Thymeleaf
+application and a single page application (React + Spring Boot, OAuth2
+secured, with an API gateway).
+
+Roles:
+- ADMIN: manages plans, trainers, classes and members
+- TRAINER: views assigned classes and booked members
+- MEMBER: views plans, books/cancels classes, views own bookings
+
+Entities:
+- MembershipPlan (id, name, price, durationMonths)
+- Member (id, name, email, phone, joinDate)
+- MemberProfile (id, heightCm, weightKg, fitnessGoal)
+- Trainer (id, name, specialization)
+- WorkoutClass (id, title, schedule, capacity)
+
+Relationships:
+- MembershipPlan 1 -- * Member (one-to-many)
+- Member 1 -- 1 MemberProfile (one-to-one)
+- Trainer 1 -- * WorkoutClass (one-to-many)
+- Member * -- * WorkoutClass (many-to-many, class bookings)
+
+Technology:
+- Traditional: Spring Boot, Spring Security (form login), JPA, H2,
+  Thymeleaf, Tailwind CSS
+- SPA: Spring Boot + JPA + H2 backend, Spring Authorization Server,
+  Spring Cloud Gateway, React.js, Tailwind CSS, OAuth2 / role based access
